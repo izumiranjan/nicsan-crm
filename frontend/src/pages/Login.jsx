@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import { Shield, Mail, Lock, Eye, EyeOff } from 'lucide-react'
+import { Shield, Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react'
 
 export default function Login() {
   const [email, setEmail] = useState('admin@nicsan.com')
@@ -28,73 +28,58 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{background: 'linear-gradient(135deg, #1a56db 0%, #1e40af 50%, #1e3a8a 100%)'}}>
-      <div className="w-full max-w-md px-4">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-4" style={{background: 'rgba(255,255,255,0.2)'}}>
-            <Shield className="w-10 h-10 text-white" />
+    <div style={{minHeight:'100vh',background:'#0f0f13',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Inter,sans-serif',position:'relative',overflow:'hidden'}}>
+      <div style={{position:'absolute',top:'20%',left:'15%',width:'300px',height:'300px',borderRadius:'50%',background:'radial-gradient(circle,rgba(124,58,237,0.12) 0%,transparent 70%)',pointerEvents:'none'}} />
+      <div style={{position:'absolute',bottom:'20%',right:'15%',width:'250px',height:'250px',borderRadius:'50%',background:'radial-gradient(circle,rgba(79,70,229,0.1) 0%,transparent 70%)',pointerEvents:'none'}} />
+
+      <div style={{width:'100%',maxWidth:'420px',padding:'0 20px'}}>
+        <div style={{textAlign:'center',marginBottom:'32px'}}>
+          <div style={{width:'56px',height:'56px',borderRadius:'16px',background:'linear-gradient(135deg,#7c3aed,#4f46e5)',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 16px',boxShadow:'0 0 30px rgba(124,58,237,0.4)'}}>
+            <Shield style={{width:'28px',height:'28px',color:'white'}} />
           </div>
-          <h1 className="text-3xl font-bold text-white">Nicsan CRM</h1>
-          <p className="text-blue-200 mt-2">Insurance Policy Management</p>
+          <h1 style={{fontSize:'28px',fontWeight:'800',color:'#f1f5f9',margin:'0 0 6px',letterSpacing:'-0.5px'}}>Nicsan CRM</h1>
+          <p style={{fontSize:'14px',color:'#475569',margin:0}}>Insurance Policy Management</p>
         </div>
 
-        {/* Card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome back</h2>
-          <p className="text-gray-500 mb-6">Sign in to your account</p>
+        <div style={{background:'rgba(255,255,255,0.03)',borderRadius:'20px',border:'1px solid rgba(255,255,255,0.08)',padding:'32px',backdropFilter:'blur(20px)'}}>
+          <h2 style={{fontSize:'20px',fontWeight:'700',color:'#f1f5f9',margin:'0 0 6px'}}>Sign in</h2>
+          <p style={{fontSize:'13px',color:'#475569',margin:'0 0 24px'}}>Enter your credentials to continue</p>
 
-          <form onSubmit={handleLogin} className="space-y-5">
-            {/* Email */}
+          <form onSubmit={handleLogin} style={{display:'flex',flexDirection:'column',gap:'16px'}}>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                  placeholder="admin@nicsan.com"
-                  required
-                />
+              <label style={{fontSize:'12px',fontWeight:'500',color:'#94a3b8',display:'block',marginBottom:'6px'}}>Email Address</label>
+              <div style={{position:'relative'}}>
+                <Mail style={{position:'absolute',left:'12px',top:'50%',transform:'translateY(-50%)',width:'15px',height:'15px',color:'#475569'}} />
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
+                  style={{width:'100%',paddingLeft:'38px',paddingRight:'14px',paddingTop:'11px',paddingBottom:'11px',background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.1)',borderRadius:'10px',fontSize:'13px',color:'#e2e8f0',outline:'none',boxSizing:'border-box'}}
+                  placeholder="admin@nicsan.com" />
               </div>
             </div>
 
-            {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                  placeholder="••••••••"
-                  required
-                />
+              <label style={{fontSize:'12px',fontWeight:'500',color:'#94a3b8',display:'block',marginBottom:'6px'}}>Password</label>
+              <div style={{position:'relative'}}>
+                <Lock style={{position:'absolute',left:'12px',top:'50%',transform:'translateY(-50%)',width:'15px',height:'15px',color:'#475569'}} />
+                <input type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} required
+                  style={{width:'100%',paddingLeft:'38px',paddingRight:'40px',paddingTop:'11px',paddingBottom:'11px',background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.1)',borderRadius:'10px',fontSize:'13px',color:'#e2e8f0',outline:'none',boxSizing:'border-box'}}
+                  placeholder="••••••••" />
                 <button type="button" onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  style={{position:'absolute',right:'12px',top:'50%',transform:'translateY(-50%)',background:'none',border:'none',cursor:'pointer',color:'#475569',padding:0}}>
+                  {showPassword ? <EyeOff style={{width:'15px',height:'15px'}} /> : <Eye style={{width:'15px',height:'15px'}} />}
                 </button>
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 px-4 rounded-xl text-white font-semibold text-lg transition-all duration-200 hover:opacity-90 active:scale-95 disabled:opacity-70"
-              style={{background: 'linear-gradient(135deg, #1a56db, #1e40af)'}}
-            >
-              {loading ? 'Signing in...' : 'Sign In'}
+            <button type="submit" disabled={loading}
+              style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'8px',padding:'12px',borderRadius:'10px',background:'linear-gradient(135deg,#7c3aed,#4f46e5)',color:'white',border:'none',cursor:'pointer',fontSize:'14px',fontWeight:'600',marginTop:'8px',boxShadow:'0 0 24px rgba(124,58,237,0.4)',opacity:loading?0.7:1}}>
+              {loading ? 'Signing in...' : (<>Sign In <ArrowRight style={{width:'15px',height:'15px'}} /></>)}
             </button>
           </form>
 
-          <div className="mt-6 p-4 bg-blue-50 rounded-xl">
-            <p className="text-sm text-blue-700 font-medium">Demo Credentials:</p>
-            <p className="text-sm text-blue-600">Email: admin@nicsan.com</p>
-            <p className="text-sm text-blue-600">Password: password</p>
+          <div style={{marginTop:'20px',padding:'14px',borderRadius:'10px',background:'rgba(124,58,237,0.08)',border:'1px solid rgba(124,58,237,0.15)'}}>
+            <p style={{fontSize:'11px',color:'#7c3aed',fontWeight:'600',margin:'0 0 4px'}}>Demo Credentials</p>
+            <p style={{fontSize:'12px',color:'#94a3b8',margin:'0 0 2px'}}>admin@nicsan.com</p>
+            <p style={{fontSize:'12px',color:'#94a3b8',margin:0}}>password</p>
           </div>
         </div>
       </div>
