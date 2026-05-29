@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import PolicyDetail from './pages/PolicyDetail'
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem('token')
@@ -17,6 +18,11 @@ function App() {
         <Route path="/dashboard" element={
           <PrivateRoute>
             <Dashboard />
+          </PrivateRoute>
+        } />
+        <Route path="/policy/:id" element={
+          <PrivateRoute>
+            <PolicyDetail />
           </PrivateRoute>
         } />
         <Route path="*" element={<Navigate to="/login" />} />

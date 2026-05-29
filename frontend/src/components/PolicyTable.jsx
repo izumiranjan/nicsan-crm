@@ -1,4 +1,5 @@
 import { Trash2, ExternalLink } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const statusColors = {
   active: { bg: 'rgba(52,211,153,0.1)', color: '#34d399', border: 'rgba(52,211,153,0.2)' },
@@ -8,6 +9,7 @@ const statusColors = {
 }
 
 export default function PolicyTable({ policies, loading, onStatusChange, onDelete }) {
+  const navigate = useNavigate()
   if (loading) {
     return (
       <div style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'60px'}}>
@@ -51,7 +53,7 @@ export default function PolicyTable({ policies, loading, onStatusChange, onDelet
                 onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,0.02)'}
                 onMouseLeave={e => e.currentTarget.style.background='transparent'}>
                 <td style={{padding:'14px 20px'}}>
-                  <span style={{fontFamily:'monospace',fontSize:'13px',fontWeight:'600',color:'#818cf8'}}>{policy.policy_number}</span>
+                  <span onClick={() => navigate(`/policy/${policy.id}`)} style={{fontFamily:'monospace',fontSize:'13px',fontWeight:'600',color:'#818cf8',textDecoration:'none',cursor:'pointer'}}>{policy.policy_number}</span>
                 </td>
                 <td style={{padding:'14px 20px'}}>
                   <p style={{margin:'0 0 2px',fontWeight:'500',color:'#e2e8f0',fontSize:'13px'}}>{policy.customer_name}</p>
